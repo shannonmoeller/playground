@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+const config = require('config');
+const req = require('@std/esm')(module);
+const { createServer } = req('../src/server');
+
+const port = config.get('server.port');
+const message = `
+	Serving on port ${port}
+`;
+
+createServer().listen(port, () => console.log(message));

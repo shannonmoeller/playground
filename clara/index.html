@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Clara</title>
+
+        <style>
+            body {
+                font: 16px/1.6 sans-serif;
+                margin: 0;
+            }
+
+            .ears {
+                position: absolute;
+                height: 75vmin;
+                left: 50%;
+                top: 30%;
+                z-index: 1;
+                transform: translate(-50%, -50%) scale(0.5, 0.5);
+            }
+
+            .video {
+                position: relative;
+                object-fit: cover;
+                height: 100vh;
+                width: 100vw;
+                transform: rotateY(180deg);
+            }
+        </style>
+    </head>
+    <body>
+
+        <svg class="ears" width="474px" height="377px" viewBox="0 0 474 377" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+            <!-- Generator: Sketch 48.2 (47327) - http://www.bohemiancoding.com/sketch -->
+            <desc>Created with Sketch.</desc>
+            <defs></defs>
+            <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                <g id="Group" transform="translate(220.500000, 183.500000) rotate(13.000000) translate(-220.500000, -183.500000) translate(-24.000000, -27.000000)" fill-rule="nonzero">
+                    <path d="M320.040884,371.637519 C300.206601,340.329034 287.928236,272.019611 290.28946,192.325284 C292.650684,100.771683 314.373946,23.9235817 340.819655,4 C326.652311,19.1798718 345.069859,65.6682291 382.849444,109.784731 C390.877605,119.272151 399.378012,127.336458 407.406174,134.926394 C408.822908,154.375605 409.295153,174.773557 408.822908,196.120252 C406.461684,280.083918 388.516381,351.713938 364.904141,378.278713 C387.561606,384.671825 302.567826,371.163148 320.040884,371.637519 Z" id="Shape" fill="#E6E6E6"></path>
+                    <path d="M182.604767,419.86774 C149.367855,410.378819 98.0880472,353.445294 55.3548742,276.110589 C3.6002536,181.695826 -15.3922677,92.0255239 13.5713273,76.3688044 C42.5349223,60.712085 108.059121,124.287855 159.813742,219.177064 C199.698036,292.241754 220.114997,361.985323 213.942427,397.568776 C230.560884,388.079855 173.598774,428.137121 182.604767,419.86774 Z" id="Shape" fill="#E6E6E6"></path>
+                    <path d="M482.962296,166.190274 C470.146753,177.108536 439.294518,163.816739 407.967635,135.809022 C399.898589,128.213709 391.354893,120.143689 383.285847,110.649548 C344.839217,66.5017921 326.327877,19.9805007 341.042019,4.78987487 C343.889917,2.89104664 346.737816,0.99221842 349.585715,0.517511364 C352.908263,-0.431902747 357.180111,0.0428043085 361.926608,0.99221842 C383.285847,5.73928898 414.138081,27.5758135 442.142417,59.8558933 C480.589047,104.478357 499.575037,151.949062 482.962296,166.190274 Z" id="Shape" fill="#CCCCCC"></path>
+                    <ellipse id="Oval" fill="#DD9FA6" transform="translate(133.500000, 300.000000) rotate(-28.730720) translate(-133.500000, -300.000000) " cx="133.5" cy="300" rx="19.5" ry="116"></ellipse>
+                    <ellipse id="Oval" fill="#DD9FA6" transform="translate(348.000000, 248.500000) rotate(-88.392066) translate(-348.000000, -248.500000) " cx="348" cy="248.5" rx="116" ry="19.5"></ellipse>
+                </g>
+            </g>
+        </svg>
+
+        <video class="video" autoplay></video>
+
+        <script as="module">
+            const video = document.querySelector('video');
+
+            navigator.getUserMedia({video: true}, handleVideo, handleError);
+
+            function handleVideo(stream) {
+                video.src = window.URL.createObjectURL(stream);
+            }
+
+            function handleError() {}
+        </script>
+
+    </body>
+</html>

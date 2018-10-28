@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <title>Alan</title>
+
+    <style>
+        body {
+            margin: 0;
+        }
+
+        .room {
+            display: block;
+            height: 100vh;
+            width: 100vw;
+            background-image: linear-gradient(145deg, #fff, #ddd);
+            cursor: crosshair;
+        }
+
+        .portal {
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            height: 62vh;
+            width: 38vh;
+            overflow: hidden;
+            border: 1rem solid dodgerblue;
+            border-radius: 100%;
+            filter: drop-shadow(0 0 1rem dodgerblue);
+            object-fit: cover;
+            transform: translate(-50%, -50%) rotateY(180deg);
+        }
+
+        .portal--alt {
+            border-color: orange;
+            filter: drop-shadow(0 0 1rem orange);
+        }
+    </style>
+
+    <script type="module">
+        class AlanPortal extends HTMLElement {
+            constructor() {
+                super();
+
+                this.video = this.querySelector('video');
+                this.addEventListener('click', this.onClick);
+            }
+
+            connectedCallback() {
+                const { video } = this;
+
+                navigator.getUserMedia(
+                    { video: true },
+                    (stream) => video.srcObject = stream,
+                    (error) => console.error(error)
+                );
+            }
+
+            onClick(event) {
+                const { video } = this;
+
+                video.classList.toggle('portal--alt');
+                video.style.left = `${event.clientX}px`;
+                video.style.top = `${event.clientY}px`;
+            }
+        }
+
+        customElements.define('alan-portal', AlanPortal);
+    </script>
+
+</head>
+<body>
+
+    <alan-portal class="room">
+        <video class="portal" autoplay></video>
+    </div>
+
+</body>
+</html>

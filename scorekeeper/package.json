@@ -1,0 +1,16 @@
+{
+  "name": "clara",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "lr | serve"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "livery": "^1.1.4",
+    "serve": "^6.5.3"
+  }
+}
