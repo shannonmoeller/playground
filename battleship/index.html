@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+    <meta charset="utf-8" />
+    <title>Battleship</title>
+
+    <style>
+        body {
+            font: normal 16px/1 sans-serif;
+        }
+        .legend {
+            width: 300px;
+            margin: 0 auto;
+        }
+        .board {
+            display: table;
+            margin: 3em auto 0;
+            border-collapse: collapse;
+        }
+        .board th,
+        .board td {
+            height: 30px;
+            width: 30px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .board th {
+            font-weight: normal;
+        }
+        .board td {
+            border: 1px solid black;
+        }
+    </style>
+
+    <script>
+        function getFragment(html) {
+            const template = document.createElement('template');
+
+            template.innerHTML = html;
+
+            return template.content;
+        }
+
+        function renderLegend() {
+            return getFragment(`
+                <div class="legend">
+                    <div>[&nbsp;&nbsp;&nbsp;] 5: Aircraft Carrier</div>
+                    <div>[&nbsp;&nbsp;&nbsp;] 4: Battleship</div>
+                    <div>[&nbsp;&nbsp;&nbsp;] 3: Cruiser</div>
+                    <div>[&nbsp;&nbsp;&nbsp;] 3: Submarine</div>
+                    <div>[&nbsp;&nbsp;&nbsp;] 2: Destory</div>
+                </div>
+            `);
+        }
+
+        function renderBoard() {
+            const columns = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+            const rows = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+
+            return getFragment(`
+                <table class="board">
+                    <thead>
+                        <th>&nbsp;</th>
+                        ${columns.map(col => `<th>${col}</th>`).join('')}
+                    </thead>
+                    <tbody>
+                        ${rows.map(row => `
+                            <tr>
+                                <th>${row}</th>
+                                ${columns.map(col => `<td>&nbsp;</td>`).join('')}
+                            </tr>
+                        `).join('')}
+                    </tbody>
+                </table>
+            `);
+        }
+
+        class GameLegendElement extends HTMLElement {
+            connectedCallback() {
+                this.appendChild(renderLegend());
+            }
+        }
+
+        class GameBoardElement extends HTMLElement {
+            connectedCallback() {
+                this.appendChild(renderBoard());
+            }
+        }
+
+        customElements.define('game-legend', GameLegendElement);
+        customElements.define('game-board', GameBoardElement);
+    </script>
+
+</head>
+<body>
+
+    <game-legend></game-legend>
+    <game-board></game-board>
+    <game-board></game-board>
+
+</body>
+</html>
